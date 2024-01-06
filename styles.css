@@ -1,0 +1,38 @@
+body {
+    text-align: center;
+    background-color: #FFFACD;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+button {
+    width: 100px;
+    height: 40px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size:medium;
+    font-weight: bold;
+    border-radius: 2em;
+    background-color: #F08080;
+}
+
+div {
+    margin: 25px;
+    background-color: #FFDAB9;
+    border: 2px solid black;
+    border-radius: 2em;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 250px);
+    grid-template-rows: repeat(3, 210px);
+    grid-gap: 2px;
+    justify-content: space-evenly;
+}
+
+.cover {
+    background-color: #F08080;
+}
+
+.inactive {
+    visibility: hidden;
+}
