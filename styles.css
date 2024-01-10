@@ -1,7 +1,9 @@
 body {
     text-align: center;
-    background-color: #FFFACD;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: #ccbe29;
+    background-image: url("https://www.transparenttextures.com/patterns/pineapple-cut.png");
+    font-family: 'Bree Serif', serif;
+    font-family: 'Delius Unicase', cursive;
 }
 
 button {
@@ -19,6 +21,7 @@ div {
     background-color: #FFDAB9;
     border: 2px solid black;
     border-radius: 2em;
+    justify-content: center;
 }
 
 img {
@@ -27,7 +30,7 @@ img {
 }
 
 #timer {
-    background-color: #FFFACD;
+    background-color: #ccbe29;
     border: none;
     font-size: large;
     font-weight: bold;

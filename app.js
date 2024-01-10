@@ -113,16 +113,29 @@ for (i = 0; i < fruits.length; i++) {
 //console.log(a.childNodes) //returns as nodelist, does not allow use of img values
 
 //Event Listeners for Click
+
+let clickEvent = [];
+console.log(clickEvent)
+
+//in each section below, 
+//push into array, if array[0] matches array[1], alert match, then pop [0] and [1]
+// if do not match, have to add inactive again..., then pop [0] and [1]
+
 //A
 a.addEventListener("click", () => {
     let element = a.querySelector("img") //queryselector returns as value and not a node list
     //console.log(element)
     element.classList.remove("inactive")
+    console.log(element)
+    clickEvent.push(element);
+    clickEvent.push("hi");
+    console.log(clickEvent);
 })
 //B
 b.addEventListener("click", () => {
     let element = b.querySelector("img")
     element.classList.remove("inactive")
+    clickEvent.push(element);
 })
 //C
 c.addEventListener("click", () => {
@@ -175,6 +188,11 @@ l.addEventListener("click", () => {
     element.classList.remove("inactive")
 })
 
+/*
 //Function to check for correct or incorrect match
-
-
+if (clickEvent[0] === clickEvent[2]) {
+    console.log("match")
+} else {
+    console.log("not a match")
+}
+*/
