@@ -7,7 +7,7 @@ let timer = document.getElementById("timer")
 
 setInterval(countDown, 1000)
 
-let time = 20;
+let time = 30;
 
 function countDown() {
     let sec = time % 60;
@@ -54,6 +54,7 @@ function generateRandomNum(length, max, min) {
 console.log(generateRandomNum(12, 12, 0));
 
 //Create the game board -- how to make more efficient?
+//for loop that goes through the array + figure out how to iterate through divs...
 //A
 let a = document.getElementById("A");
 let imageA = `<img src="${fruits[newArr[0]].image}">`
@@ -115,7 +116,7 @@ for (i = 0; i < fruits.length; i++) {
 //Event Listeners for Click
 
 let clickEvent = [];
-console.log(clickEvent)
+
 
 //in each section below, 
 //push into array, if array[0] matches array[1], alert match, then pop [0] and [1]
@@ -126,66 +127,350 @@ a.addEventListener("click", () => {
     let element = a.querySelector("img") //queryselector returns as value and not a node list
     //console.log(element)
     element.classList.remove("inactive")
-    console.log(element)
-    clickEvent.push(element);
-    clickEvent.push("hi");
-    console.log(clickEvent);
+    let aSRC = a.querySelector("img").src;
+
+    if (clickEvent.length === 0) {
+        clickEvent[0] = aSRC;
+        element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
+        console.log(element);
+    } else {
+        clickEvent[1] = aSRC;
+        setTimeout(function() {
+            if (clickEvent[0] === clickEvent[1]) {
+                console.log("match") // img remain on screen
+                let firstPick = document.getElementById("first-pick");
+                firstPick.removeAttribute("id");
+                clickEvent.splice(0,2);
+            } else {
+                alert("incorrect")
+                element.classList.add("inactive"); //add "inactive" tag to remove img from screen
+                let firstPick = document.getElementById("first-pick");
+                firstPick.classList.add("inactive");
+                firstPick.removeAttribute("id")
+                clickEvent.splice(0,2);
+            }
+        }, 500)
+    }
 })
 //B
 b.addEventListener("click", () => {
     let element = b.querySelector("img")
     element.classList.remove("inactive")
-    clickEvent.push(element);
+    let bSRC = b.querySelector("img").src;
+    
+    if (clickEvent.length === 0) {
+        clickEvent[0] = bSRC;
+        element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
+        console.log(element);
+    } else {
+        clickEvent[1] = bSRC;
+        setTimeout(function() {
+            if (clickEvent[0] === clickEvent[1]) {
+                console.log("match") // img remain on screen
+                let firstPick = document.getElementById("first-pick");
+                firstPick.removeAttribute("id");
+                clickEvent.splice(0,2);
+            } else {
+                alert("incorrect")
+                element.classList.add("inactive"); //add "inactive" tag to remove img from screen
+                let firstPick = document.getElementById("first-pick");
+                firstPick.classList.add("inactive");
+                firstPick.removeAttribute("id");
+                clickEvent.splice(0,2);
+            }
+        }, 500)
+    }
 })
 //C
 c.addEventListener("click", () => {
     let element = c.querySelector("img")
     element.classList.remove("inactive")
+    let cSRC = c.querySelector("img").src;
+    
+    if (clickEvent.length === 0) {
+        clickEvent[0] = cSRC;
+        element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
+        console.log(element);
+    } else {
+        clickEvent[1] = cSRC;
+        setTimeout(function() {
+            if (clickEvent[0] === clickEvent[1]) {
+                console.log("match") // img remain on screen
+                let firstPick = document.getElementById("first-pick");
+                firstPick.removeAttribute("id");
+                clickEvent.splice(0,2);
+            } else {
+                alert("incorrect")
+                element.classList.add("inactive"); //add "inactive" tag to remove img from screen
+                let firstPick = document.getElementById("first-pick");
+                firstPick.classList.add("inactive");
+                firstPick.removeAttribute("id");
+                clickEvent.splice(0,2);
+            }
+        }, 500)
+    }
 })
 //D
 d.addEventListener("click", () => {
     let element = d.querySelector("img")
     element.classList.remove("inactive")
+    let dSRC = d.querySelector("img").src;
+    
+    if (clickEvent.length === 0) {
+        clickEvent[0] = dSRC;
+        element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
+        console.log(element);
+    } else {
+        clickEvent[1] = dSRC;
+        setTimeout(function() {
+            if (clickEvent[0] === clickEvent[1]) {
+                console.log("match") // img remain on screen
+                let firstPick = document.getElementById("first-pick");
+                firstPick.removeAttribute("id");
+                clickEvent.splice(0,2);
+            } else {
+                alert("incorrect")
+                element.classList.add("inactive"); //add "inactive" tag to remove img from screen
+                let firstPick = document.getElementById("first-pick");
+                firstPick.classList.add("inactive");
+                firstPick.removeAttribute("id");
+                clickEvent.splice(0,2);
+            }
+        }, 500)
+    }
 })
 //E
 e.addEventListener("click", () => {
     let element = e.querySelector("img")
     element.classList.remove("inactive")
+    let eSRC = e.querySelector("img").src;
+    
+    if (clickEvent.length === 0) {
+        clickEvent[0] = eSRC;
+        element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
+        console.log(element);
+    } else {
+        clickEvent[1] = eSRC;
+        setTimeout(function() {
+            if (clickEvent[0] === clickEvent[1]) {
+                console.log("match") // img remain on screen
+                let firstPick = document.getElementById("first-pick");
+                firstPick.removeAttribute("id");
+                clickEvent.splice(0,2);
+            } else {
+                alert("incorrect")
+                element.classList.add("inactive"); //add "inactive" tag to remove img from screen
+                let firstPick = document.getElementById("first-pick");
+                firstPick.classList.add("inactive");
+                firstPick.removeAttribute("id");
+                clickEvent.splice(0,2);
+            }
+        }, 500)
+    }
+    
 })
 //F
 f.addEventListener("click", () => {
     let element = f.querySelector("img")
     element.classList.remove("inactive")
+    let fSRC = f.querySelector("img").src;
+    
+    if (clickEvent.length === 0) {
+        clickEvent[0] = fSRC;
+        element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
+        console.log(element);
+    } else {
+        clickEvent[1] = fSRC;
+        setTimeout(function() {
+            if (clickEvent[0] === clickEvent[1]) {
+                console.log("match") // img remain on screen
+                let firstPick = document.getElementById("first-pick");
+                firstPick.removeAttribute("id");
+                clickEvent.splice(0,2);
+            } else {
+                alert("incorrect")
+                element.classList.add("inactive"); //add "inactive" tag to remove img from screen
+                let firstPick = document.getElementById("first-pick");
+                firstPick.classList.add("inactive");
+                firstPick.removeAttribute("id");
+                clickEvent.splice(0,2);
+            }
+        }, 500)
+    }
 })
 //G
 g.addEventListener("click", () => {
     let element = g.querySelector("img")
     element.classList.remove("inactive")
+    let gSRC = g.querySelector("img").src;
+    
+    if (clickEvent.length === 0) {
+        clickEvent[0] = gSRC;
+        element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
+        console.log(element);
+    } else {
+        clickEvent[1] = gSRC;
+        setTimeout(function() {
+            if (clickEvent[0] === clickEvent[1]) {
+                console.log("match") // img remain on screen
+                let firstPick = document.getElementById("first-pick");
+                firstPick.removeAttribute("id");
+                clickEvent.splice(0,2);
+            } else {
+                alert("incorrect")
+                element.classList.add("inactive"); //add "inactive" tag to remove img from screen
+                let firstPick = document.getElementById("first-pick");
+                firstPick.classList.add("inactive");
+                firstPick.removeAttribute("id");
+                clickEvent.splice(0,2);
+            }
+        }, 500)
+    }
 })
 //H
 h.addEventListener("click", () => {
     let element = h.querySelector("img")
     element.classList.remove("inactive")
+    let hSRC = h.querySelector("img").src;
+    
+    if (clickEvent.length === 0) {
+        clickEvent[0] = hSRC;
+        element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
+        console.log(element);
+    } else {
+        clickEvent[1] = hSRC;
+        setTimeout(function() {
+            if (clickEvent[0] === clickEvent[1]) {
+                console.log("match") // img remain on screen
+                let firstPick = document.getElementById("first-pick");
+                firstPick.removeAttribute("id");
+                clickEvent.splice(0,2);
+            } else {
+                alert("incorrect")
+                element.classList.add("inactive"); //add "inactive" tag to remove img from screen
+                let firstPick = document.getElementById("first-pick");
+                firstPick.classList.add("inactive");
+                firstPick.removeAttribute("id");
+                clickEvent.splice(0,2);
+            }
+        }, 500)
+    }
 })
 //I
 letterI.addEventListener("click", () => {
     let element = letterI.querySelector("img")
     element.classList.remove("inactive")
+    let letterISRC = letterI.querySelector("img").src;
+    
+    if (clickEvent.length === 0) {
+        clickEvent[0] = letterISRC;
+        element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
+        console.log(element);
+    } else {
+        clickEvent[1] = letterISRC;
+        setTimeout(function() {
+            if (clickEvent[0] === clickEvent[1]) {
+                console.log("match") // img remain on screen
+                let firstPick = document.getElementById("first-pick");
+                firstPick.removeAttribute("id");
+                clickEvent.splice(0,2);
+            } else {
+                alert("incorrect")
+                element.classList.add("inactive"); //add "inactive" tag to remove img from screen
+                let firstPick = document.getElementById("first-pick");
+                firstPick.classList.add("inactive");
+                firstPick.removeAttribute("id");
+                clickEvent.splice(0,2);
+            }
+        }, 500)
+    }
 })
 //J
 j.addEventListener("click", () => {
     let element = j.querySelector("img")
     element.classList.remove("inactive")
+    let jSRC = j.querySelector("img").src;
+    
+    if (clickEvent.length === 0) {
+        clickEvent[0] = jSRC;
+        element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
+        console.log(element);
+    } else {
+        clickEvent[1] = jSRC;
+        setTimeout(function() {
+            if (clickEvent[0] === clickEvent[1]) {
+                console.log("match") // img remain on screen
+                let firstPick = document.getElementById("first-pick");
+                firstPick.removeAttribute("id");
+                clickEvent.splice(0,2);
+            } else {
+                alert("incorrect")
+                element.classList.add("inactive"); //add "inactive" tag to remove img from screen
+                let firstPick = document.getElementById("first-pick");
+                firstPick.classList.add("inactive");
+                firstPick.removeAttribute("id");
+                clickEvent.splice(0,2);
+            }
+        }, 500)
+    }
 })
 //K
 k.addEventListener("click", () => {
     let element = k.querySelector("img")
     element.classList.remove("inactive")
+    let kSRC = k.querySelector("img").src;
+    
+    if (clickEvent.length === 0) {
+        clickEvent[0] = kSRC;
+        element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
+        console.log(element);
+    } else {
+        clickEvent[1] = kSRC;
+        setTimeout(function() {
+            if (clickEvent[0] === clickEvent[1]) {
+                console.log("match") // img remain on screen
+                let firstPick = document.getElementById("first-pick");
+                firstPick.removeAttribute("id");
+                clickEvent.splice(0,2);
+            } else {
+                alert("incorrect")
+                element.classList.add("inactive"); //add "inactive" tag to remove img from screen
+                let firstPick = document.getElementById("first-pick");
+                firstPick.classList.add("inactive");
+                firstPick.removeAttribute("id");
+                clickEvent.splice(0,2);
+            }
+        }, 500)
+    }
 })
 //L
 l.addEventListener("click", () => {
     let element = l.querySelector("img")
     element.classList.remove("inactive")
+    let lSRC = l.querySelector("img").src;
+    
+    if (clickEvent.length === 0) {
+        clickEvent[0] = lSRC;
+        element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
+        console.log(element);
+    } else {
+        clickEvent[1] = lSRC;
+        setTimeout(function() {
+            if (clickEvent[0] === clickEvent[1]) {
+                console.log("match") // img remain on screen
+                let firstPick = document.getElementById("first-pick");
+                firstPick.removeAttribute("id");
+                clickEvent.splice(0,2);
+            } else {
+                alert("incorrect")
+                element.classList.add("inactive"); //add "inactive" tag to remove img from screen
+                let firstPick = document.getElementById("first-pick");
+                firstPick.classList.add("inactive");
+                firstPick.removeAttribute("id");
+                clickEvent.splice(0,2);
+            }
+        }, 500)
+    }
 })
 
 /*
