@@ -17,11 +17,8 @@ button {
 }
 
 div {
-    margin: 25px;
-    background-color: #FFDAB9;
-    border: 2px solid black;
     border-radius: 2em;
-    justify-content: center;
+    
 }
 
 img {
@@ -29,8 +26,15 @@ img {
     height: 120px;
 }
 
-#timer {
+.another-container {
+    display: grid;
+    grid-template-columns: 200px 200px;
+    justify-content: center;
+    margin: 10px;
     background-color: #ccbe29;
+}
+
+#timer {
     border: none;
     font-size: large;
     font-weight: bold;
@@ -41,9 +45,10 @@ img {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    grid-gap: 1px;
+    grid-gap: 5px;
     justify-content: space-evenly;
     align-items: center;
+    margin: 25px;
 }
 
 .cover {

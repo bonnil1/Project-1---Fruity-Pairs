@@ -114,370 +114,395 @@ for (i = 0; i < fruits.length; i++) {
 //console.log(a.childNodes) //returns as nodelist, does not allow use of img values
 
 //Event Listeners for Click
+let livesLeft = 5;
+let lives = document.getElementById("lives-left");
 
+const divAlpha = [a, b, c, d, e, f, g, h, letterI, j, k, l]
 let clickEvent = [];
 
-
-//in each section below, 
-//push into array, if array[0] matches array[1], alert match, then pop [0] and [1]
-// if do not match, have to add inactive again..., then pop [0] and [1]
-
-//A
-a.addEventListener("click", () => {
-    let element = a.querySelector("img") //queryselector returns as value and not a node list
-    //console.log(element)
+divAlpha.forEach((div) => {
+    div.addEventListener("click", () => {
+    let element = div.querySelector("img") //queryselector returns as value and not a node list
     element.classList.remove("inactive")
-    let aSRC = a.querySelector("img").src;
+    let imgSRC = div.querySelector("img").src;
 
     if (clickEvent.length === 0) {
-        clickEvent[0] = aSRC;
+        clickEvent[0] = imgSRC;
         element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
-        console.log(element);
     } else {
-        clickEvent[1] = aSRC;
+        clickEvent[1] = imgSRC;
         setTimeout(function() {
-            if (clickEvent[0] === clickEvent[1]) {
+            if (clickEvent[0] === clickEvent[1]) { //match condition
                 console.log("match") // img remain on screen
                 let firstPick = document.getElementById("first-pick");
                 firstPick.removeAttribute("id");
                 clickEvent.splice(0,2);
-            } else {
-                alert("incorrect")
+            } else { //not a match condition
                 element.classList.add("inactive"); //add "inactive" tag to remove img from screen
                 let firstPick = document.getElementById("first-pick");
                 firstPick.classList.add("inactive");
                 firstPick.removeAttribute("id")
                 clickEvent.splice(0,2);
+                livesLeft--;
+                lives.innerHTML = `Lives Left: ${livesLeft}`;
+                console.log(livesLeft)
             }
         }, 500)
     }
-})
-//B
-b.addEventListener("click", () => {
-    let element = b.querySelector("img")
-    element.classList.remove("inactive")
-    let bSRC = b.querySelector("img").src;
-    
-    if (clickEvent.length === 0) {
-        clickEvent[0] = bSRC;
-        element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
-        console.log(element);
-    } else {
-        clickEvent[1] = bSRC;
-        setTimeout(function() {
-            if (clickEvent[0] === clickEvent[1]) {
-                console.log("match") // img remain on screen
-                let firstPick = document.getElementById("first-pick");
-                firstPick.removeAttribute("id");
-                clickEvent.splice(0,2);
-            } else {
-                alert("incorrect")
-                element.classList.add("inactive"); //add "inactive" tag to remove img from screen
-                let firstPick = document.getElementById("first-pick");
-                firstPick.classList.add("inactive");
-                firstPick.removeAttribute("id");
-                clickEvent.splice(0,2);
-            }
-        }, 500)
-    }
-})
-//C
-c.addEventListener("click", () => {
-    let element = c.querySelector("img")
-    element.classList.remove("inactive")
-    let cSRC = c.querySelector("img").src;
-    
-    if (clickEvent.length === 0) {
-        clickEvent[0] = cSRC;
-        element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
-        console.log(element);
-    } else {
-        clickEvent[1] = cSRC;
-        setTimeout(function() {
-            if (clickEvent[0] === clickEvent[1]) {
-                console.log("match") // img remain on screen
-                let firstPick = document.getElementById("first-pick");
-                firstPick.removeAttribute("id");
-                clickEvent.splice(0,2);
-            } else {
-                alert("incorrect")
-                element.classList.add("inactive"); //add "inactive" tag to remove img from screen
-                let firstPick = document.getElementById("first-pick");
-                firstPick.classList.add("inactive");
-                firstPick.removeAttribute("id");
-                clickEvent.splice(0,2);
-            }
-        }, 500)
-    }
-})
-//D
-d.addEventListener("click", () => {
-    let element = d.querySelector("img")
-    element.classList.remove("inactive")
-    let dSRC = d.querySelector("img").src;
-    
-    if (clickEvent.length === 0) {
-        clickEvent[0] = dSRC;
-        element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
-        console.log(element);
-    } else {
-        clickEvent[1] = dSRC;
-        setTimeout(function() {
-            if (clickEvent[0] === clickEvent[1]) {
-                console.log("match") // img remain on screen
-                let firstPick = document.getElementById("first-pick");
-                firstPick.removeAttribute("id");
-                clickEvent.splice(0,2);
-            } else {
-                alert("incorrect")
-                element.classList.add("inactive"); //add "inactive" tag to remove img from screen
-                let firstPick = document.getElementById("first-pick");
-                firstPick.classList.add("inactive");
-                firstPick.removeAttribute("id");
-                clickEvent.splice(0,2);
-            }
-        }, 500)
-    }
-})
-//E
-e.addEventListener("click", () => {
-    let element = e.querySelector("img")
-    element.classList.remove("inactive")
-    let eSRC = e.querySelector("img").src;
-    
-    if (clickEvent.length === 0) {
-        clickEvent[0] = eSRC;
-        element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
-        console.log(element);
-    } else {
-        clickEvent[1] = eSRC;
-        setTimeout(function() {
-            if (clickEvent[0] === clickEvent[1]) {
-                console.log("match") // img remain on screen
-                let firstPick = document.getElementById("first-pick");
-                firstPick.removeAttribute("id");
-                clickEvent.splice(0,2);
-            } else {
-                alert("incorrect")
-                element.classList.add("inactive"); //add "inactive" tag to remove img from screen
-                let firstPick = document.getElementById("first-pick");
-                firstPick.classList.add("inactive");
-                firstPick.removeAttribute("id");
-                clickEvent.splice(0,2);
-            }
-        }, 500)
-    }
-    
-})
-//F
-f.addEventListener("click", () => {
-    let element = f.querySelector("img")
-    element.classList.remove("inactive")
-    let fSRC = f.querySelector("img").src;
-    
-    if (clickEvent.length === 0) {
-        clickEvent[0] = fSRC;
-        element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
-        console.log(element);
-    } else {
-        clickEvent[1] = fSRC;
-        setTimeout(function() {
-            if (clickEvent[0] === clickEvent[1]) {
-                console.log("match") // img remain on screen
-                let firstPick = document.getElementById("first-pick");
-                firstPick.removeAttribute("id");
-                clickEvent.splice(0,2);
-            } else {
-                alert("incorrect")
-                element.classList.add("inactive"); //add "inactive" tag to remove img from screen
-                let firstPick = document.getElementById("first-pick");
-                firstPick.classList.add("inactive");
-                firstPick.removeAttribute("id");
-                clickEvent.splice(0,2);
-            }
-        }, 500)
-    }
-})
-//G
-g.addEventListener("click", () => {
-    let element = g.querySelector("img")
-    element.classList.remove("inactive")
-    let gSRC = g.querySelector("img").src;
-    
-    if (clickEvent.length === 0) {
-        clickEvent[0] = gSRC;
-        element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
-        console.log(element);
-    } else {
-        clickEvent[1] = gSRC;
-        setTimeout(function() {
-            if (clickEvent[0] === clickEvent[1]) {
-                console.log("match") // img remain on screen
-                let firstPick = document.getElementById("first-pick");
-                firstPick.removeAttribute("id");
-                clickEvent.splice(0,2);
-            } else {
-                alert("incorrect")
-                element.classList.add("inactive"); //add "inactive" tag to remove img from screen
-                let firstPick = document.getElementById("first-pick");
-                firstPick.classList.add("inactive");
-                firstPick.removeAttribute("id");
-                clickEvent.splice(0,2);
-            }
-        }, 500)
-    }
-})
-//H
-h.addEventListener("click", () => {
-    let element = h.querySelector("img")
-    element.classList.remove("inactive")
-    let hSRC = h.querySelector("img").src;
-    
-    if (clickEvent.length === 0) {
-        clickEvent[0] = hSRC;
-        element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
-        console.log(element);
-    } else {
-        clickEvent[1] = hSRC;
-        setTimeout(function() {
-            if (clickEvent[0] === clickEvent[1]) {
-                console.log("match") // img remain on screen
-                let firstPick = document.getElementById("first-pick");
-                firstPick.removeAttribute("id");
-                clickEvent.splice(0,2);
-            } else {
-                alert("incorrect")
-                element.classList.add("inactive"); //add "inactive" tag to remove img from screen
-                let firstPick = document.getElementById("first-pick");
-                firstPick.classList.add("inactive");
-                firstPick.removeAttribute("id");
-                clickEvent.splice(0,2);
-            }
-        }, 500)
-    }
-})
-//I
-letterI.addEventListener("click", () => {
-    let element = letterI.querySelector("img")
-    element.classList.remove("inactive")
-    let letterISRC = letterI.querySelector("img").src;
-    
-    if (clickEvent.length === 0) {
-        clickEvent[0] = letterISRC;
-        element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
-        console.log(element);
-    } else {
-        clickEvent[1] = letterISRC;
-        setTimeout(function() {
-            if (clickEvent[0] === clickEvent[1]) {
-                console.log("match") // img remain on screen
-                let firstPick = document.getElementById("first-pick");
-                firstPick.removeAttribute("id");
-                clickEvent.splice(0,2);
-            } else {
-                alert("incorrect")
-                element.classList.add("inactive"); //add "inactive" tag to remove img from screen
-                let firstPick = document.getElementById("first-pick");
-                firstPick.classList.add("inactive");
-                firstPick.removeAttribute("id");
-                clickEvent.splice(0,2);
-            }
-        }, 500)
-    }
-})
-//J
-j.addEventListener("click", () => {
-    let element = j.querySelector("img")
-    element.classList.remove("inactive")
-    let jSRC = j.querySelector("img").src;
-    
-    if (clickEvent.length === 0) {
-        clickEvent[0] = jSRC;
-        element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
-        console.log(element);
-    } else {
-        clickEvent[1] = jSRC;
-        setTimeout(function() {
-            if (clickEvent[0] === clickEvent[1]) {
-                console.log("match") // img remain on screen
-                let firstPick = document.getElementById("first-pick");
-                firstPick.removeAttribute("id");
-                clickEvent.splice(0,2);
-            } else {
-                alert("incorrect")
-                element.classList.add("inactive"); //add "inactive" tag to remove img from screen
-                let firstPick = document.getElementById("first-pick");
-                firstPick.classList.add("inactive");
-                firstPick.removeAttribute("id");
-                clickEvent.splice(0,2);
-            }
-        }, 500)
-    }
-})
-//K
-k.addEventListener("click", () => {
-    let element = k.querySelector("img")
-    element.classList.remove("inactive")
-    let kSRC = k.querySelector("img").src;
-    
-    if (clickEvent.length === 0) {
-        clickEvent[0] = kSRC;
-        element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
-        console.log(element);
-    } else {
-        clickEvent[1] = kSRC;
-        setTimeout(function() {
-            if (clickEvent[0] === clickEvent[1]) {
-                console.log("match") // img remain on screen
-                let firstPick = document.getElementById("first-pick");
-                firstPick.removeAttribute("id");
-                clickEvent.splice(0,2);
-            } else {
-                alert("incorrect")
-                element.classList.add("inactive"); //add "inactive" tag to remove img from screen
-                let firstPick = document.getElementById("first-pick");
-                firstPick.classList.add("inactive");
-                firstPick.removeAttribute("id");
-                clickEvent.splice(0,2);
-            }
-        }, 500)
-    }
-})
-//L
-l.addEventListener("click", () => {
-    let element = l.querySelector("img")
-    element.classList.remove("inactive")
-    let lSRC = l.querySelector("img").src;
-    
-    if (clickEvent.length === 0) {
-        clickEvent[0] = lSRC;
-        element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
-        console.log(element);
-    } else {
-        clickEvent[1] = lSRC;
-        setTimeout(function() {
-            if (clickEvent[0] === clickEvent[1]) {
-                console.log("match") // img remain on screen
-                let firstPick = document.getElementById("first-pick");
-                firstPick.removeAttribute("id");
-                clickEvent.splice(0,2);
-            } else {
-                alert("incorrect")
-                element.classList.add("inactive"); //add "inactive" tag to remove img from screen
-                let firstPick = document.getElementById("first-pick");
-                firstPick.classList.add("inactive");
-                firstPick.removeAttribute("id");
-                clickEvent.splice(0,2);
-            }
-        }, 500)
-    }
+    })
 })
 
+if (livesLeft === 0) {
+    console.log("You lose the game, play again?")
+}
+
+//Version 1 (more redundant code) below
 /*
-//Function to check for correct or incorrect match
-if (clickEvent[0] === clickEvent[2]) {
-    console.log("match")
-} else {
-    console.log("not a match")
+checkCards();
+
+function checkCards() {
+
+    let clickEvent = [];
+
+    //A
+    a.addEventListener("click", () => {
+        let element = a.querySelector("img") //queryselector returns as value and not a node list
+        //console.log(element)
+        element.classList.remove("inactive")
+        let aSRC = a.querySelector("img").src;
+
+        if (clickEvent.length === 0) {
+            clickEvent[0] = aSRC;
+            element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
+        } else {
+            clickEvent[1] = aSRC;
+            setTimeout(function() {
+                if (clickEvent[0] === clickEvent[1]) { //match condition
+                    console.log("match") // img remain on screen
+                    let firstPick = document.getElementById("first-pick");
+                    firstPick.removeAttribute("id");
+                    clickEvent.splice(0,2);
+                } else { //not a match condition
+                    element.classList.add("inactive"); //add "inactive" tag to remove img from screen
+                    let firstPick = document.getElementById("first-pick");
+                    firstPick.classList.add("inactive");
+                    firstPick.removeAttribute("id")
+                    clickEvent.splice(0,2);
+                    livesLeft--;
+                    lives.innerHTML = `Lives Left: ${livesLeft}`;
+                }
+            }, 500)
+        }
+    })
+    //B
+    b.addEventListener("click", () => {
+        let element = b.querySelector("img")
+        element.classList.remove("inactive")
+        let bSRC = b.querySelector("img").src;
+        
+        if (clickEvent.length === 0) {
+            clickEvent[0] = bSRC;
+            element.setAttribute("id", "first-pick"); 
+        } else {
+            clickEvent[1] = bSRC;
+            setTimeout(function() {
+                if (clickEvent[0] === clickEvent[1]) {
+                    let firstPick = document.getElementById("first-pick");
+                    firstPick.removeAttribute("id");
+                    clickEvent.splice(0,2);
+                } else {
+                    element.classList.add("inactive"); 
+                    let firstPick = document.getElementById("first-pick");
+                    firstPick.classList.add("inactive");
+                    firstPick.removeAttribute("id");
+                    clickEvent.splice(0,2);
+                    livesLeft--;
+                    lives.innerHTML = `Lives Left: ${livesLeft}`;
+                }
+            }, 500)
+        }
+    })
+    //C
+    c.addEventListener("click", () => {
+        let element = c.querySelector("img")
+        element.classList.remove("inactive")
+        let cSRC = c.querySelector("img").src;
+        
+        if (clickEvent.length === 0) {
+            clickEvent[0] = cSRC;
+            element.setAttribute("id", "first-pick"); 
+        } else {
+            clickEvent[1] = cSRC;
+            setTimeout(function() {
+                if (clickEvent[0] === clickEvent[1]) { 
+                    let firstPick = document.getElementById("first-pick");
+                    firstPick.removeAttribute("id");
+                    clickEvent.splice(0,2);
+                } else { 
+                    element.classList.add("inactive"); 
+                    let firstPick = document.getElementById("first-pick");
+                    firstPick.classList.add("inactive");
+                    firstPick.removeAttribute("id");
+                    clickEvent.splice(0,2);
+                    livesLeft--;
+                    lives.innerHTML = `Lives Left: ${livesLeft}`;
+                }
+            }, 500)
+        }
+    })
+    //D
+    d.addEventListener("click", () => {
+        let element = d.querySelector("img")
+        element.classList.remove("inactive")
+        let dSRC = d.querySelector("img").src;
+        
+        if (clickEvent.length === 0) {
+            clickEvent[0] = dSRC;
+            element.setAttribute("id", "first-pick");
+        } else {
+            clickEvent[1] = dSRC;
+            setTimeout(function() {
+                if (clickEvent[0] === clickEvent[1]) {
+                    let firstPick = document.getElementById("first-pick");
+                    firstPick.removeAttribute("id");
+                    clickEvent.splice(0,2);
+                } else {
+                    element.classList.add("inactive"); 
+                    let firstPick = document.getElementById("first-pick");
+                    firstPick.classList.add("inactive");
+                    firstPick.removeAttribute("id");
+                    clickEvent.splice(0,2);
+                    livesLeft--;
+                    lives.innerHTML = `Lives Left: ${livesLeft}`;
+                }
+            }, 500)
+        }
+    })
+    //E
+    e.addEventListener("click", () => {
+        let element = e.querySelector("img")
+        element.classList.remove("inactive")
+        let eSRC = e.querySelector("img").src;
+        
+        if (clickEvent.length === 0) {
+            clickEvent[0] = eSRC;
+            element.setAttribute("id", "first-pick"); 
+        } else {
+            clickEvent[1] = eSRC;
+            setTimeout(function() {
+                if (clickEvent[0] === clickEvent[1]) {
+                    let firstPick = document.getElementById("first-pick");
+                    firstPick.removeAttribute("id");
+                    clickEvent.splice(0,2);
+                } else {
+                    element.classList.add("inactive"); 
+                    let firstPick = document.getElementById("first-pick");
+                    firstPick.classList.add("inactive");
+                    firstPick.removeAttribute("id");
+                    clickEvent.splice(0,2);
+                    livesLeft--;
+                    lives.innerHTML = `Lives Left: ${livesLeft}`;
+                }
+            }, 500)
+        }
+        
+    })
+    //F
+    f.addEventListener("click", () => {
+        let element = f.querySelector("img")
+        element.classList.remove("inactive")
+        let fSRC = f.querySelector("img").src;
+        
+        if (clickEvent.length === 0) {
+            clickEvent[0] = fSRC;
+            element.setAttribute("id", "first-pick"); 
+        } else {
+            clickEvent[1] = fSRC;
+            setTimeout(function() {
+                if (clickEvent[0] === clickEvent[1]) {
+                    let firstPick = document.getElementById("first-pick");
+                    firstPick.removeAttribute("id");
+                    clickEvent.splice(0,2);
+                } else {
+                    element.classList.add("inactive"); 
+                    let firstPick = document.getElementById("first-pick");
+                    firstPick.classList.add("inactive");
+                    firstPick.removeAttribute("id");
+                    clickEvent.splice(0,2);
+                    livesLeft--;
+                    lives.innerHTML = `Lives Left: ${livesLeft}`;
+                }
+            }, 500)
+        }
+    })
+    //G
+    g.addEventListener("click", () => {
+        let element = g.querySelector("img")
+        element.classList.remove("inactive")
+        let gSRC = g.querySelector("img").src;
+        
+        if (clickEvent.length === 0) {
+            clickEvent[0] = gSRC;
+            element.setAttribute("id", "first-pick"); 
+        } else {
+            clickEvent[1] = gSRC;
+            setTimeout(function() {
+                if (clickEvent[0] === clickEvent[1]) {
+                    let firstPick = document.getElementById("first-pick");
+                    firstPick.removeAttribute("id");
+                    clickEvent.splice(0,2);
+                } else {
+                    element.classList.add("inactive"); 
+                    let firstPick = document.getElementById("first-pick");
+                    firstPick.classList.add("inactive");
+                    firstPick.removeAttribute("id");
+                    clickEvent.splice(0,2);
+                    livesLeft--;
+                    lives.innerHTML = `Lives Left: ${livesLeft}`;
+                }
+            }, 500)
+        }
+    })
+    //H
+    h.addEventListener("click", () => {
+        let element = h.querySelector("img")
+        element.classList.remove("inactive")
+        let hSRC = h.querySelector("img").src;
+        
+        if (clickEvent.length === 0) {
+            clickEvent[0] = hSRC;
+            element.setAttribute("id", "first-pick");
+        } else {
+            clickEvent[1] = hSRC;
+            setTimeout(function() {
+                if (clickEvent[0] === clickEvent[1]) {
+                    let firstPick = document.getElementById("first-pick");
+                    firstPick.removeAttribute("id");
+                    clickEvent.splice(0,2);
+                } else {
+                    element.classList.add("inactive"); 
+                    let firstPick = document.getElementById("first-pick");
+                    firstPick.classList.add("inactive");
+                    firstPick.removeAttribute("id");
+                    clickEvent.splice(0,2);
+                    livesLeft--;
+                    lives.innerHTML = `Lives Left: ${livesLeft}`;
+                }
+            }, 500)
+        }
+    })
+    //I
+    letterI.addEventListener("click", () => {
+        let element = letterI.querySelector("img")
+        element.classList.remove("inactive")
+        let letterISRC = letterI.querySelector("img").src;
+        
+        if (clickEvent.length === 0) {
+            clickEvent[0] = letterISRC;
+            element.setAttribute("id", "first-pick"); 
+        } else {
+            clickEvent[1] = letterISRC;
+            setTimeout(function() {
+                if (clickEvent[0] === clickEvent[1]) {
+                    let firstPick = document.getElementById("first-pick");
+                    firstPick.removeAttribute("id");
+                    clickEvent.splice(0,2);
+                } else {
+                    element.classList.add("inactive"); 
+                    let firstPick = document.getElementById("first-pick");
+                    firstPick.classList.add("inactive");
+                    firstPick.removeAttribute("id");
+                    clickEvent.splice(0,2);
+                    livesLeft--;
+                    lives.innerHTML = `Lives Left: ${livesLeft}`;
+                }
+            }, 500)
+        }
+    })
+    //J
+    j.addEventListener("click", () => {
+        let element = j.querySelector("img")
+        element.classList.remove("inactive")
+        let jSRC = j.querySelector("img").src;
+        
+        if (clickEvent.length === 0) {
+            clickEvent[0] = jSRC;
+            element.setAttribute("id", "first-pick");
+        } else {
+            clickEvent[1] = jSRC;
+            setTimeout(function() {
+                if (clickEvent[0] === clickEvent[1]) {
+                    let firstPick = document.getElementById("first-pick");
+                    firstPick.removeAttribute("id");
+                    clickEvent.splice(0,2);
+                } else {
+                    element.classList.add("inactive");
+                    let firstPick = document.getElementById("first-pick");
+                    firstPick.classList.add("inactive");
+                    firstPick.removeAttribute("id");
+                    clickEvent.splice(0,2);
+                    livesLeft--;
+                    lives.innerHTML = `Lives Left: ${livesLeft}`;
+                }
+            }, 500)
+        }
+    })
+    //K
+    k.addEventListener("click", () => {
+        let element = k.querySelector("img")
+        element.classList.remove("inactive")
+        let kSRC = k.querySelector("img").src;
+        
+        if (clickEvent.length === 0) {
+            clickEvent[0] = kSRC;
+            element.setAttribute("id", "first-pick");
+        } else {
+            clickEvent[1] = kSRC;
+            setTimeout(function() {
+                if (clickEvent[0] === clickEvent[1]) {
+                    let firstPick = document.getElementById("first-pick");
+                    firstPick.removeAttribute("id");
+                    clickEvent.splice(0,2);
+                } else {
+                    element.classList.add("inactive"); 
+                    let firstPick = document.getElementById("first-pick");
+                    firstPick.classList.add("inactive");
+                    firstPick.removeAttribute("id");
+                    clickEvent.splice(0,2);
+                    livesLeft--;
+                    lives.innerHTML = `Lives Left: ${livesLeft}`;
+                }
+            }, 500)
+        }
+    })
+    //L
+    l.addEventListener("click", () => {
+        let element = l.querySelector("img")
+        element.classList.remove("inactive")
+        let lSRC = l.querySelector("img").src;
+        
+        if (clickEvent.length === 0) {
+            clickEvent[0] = lSRC;
+            element.setAttribute("id", "first-pick");
+        } else {
+            clickEvent[1] = lSRC;
+            setTimeout(function() {
+                if (clickEvent[0] === clickEvent[1]) {
+                    let firstPick = document.getElementById("first-pick");
+                    firstPick.removeAttribute("id");
+                    clickEvent.splice(0,2);
+                } else {
+                    element.classList.add("inactive"); 
+                    let firstPick = document.getElementById("first-pick");
+                    firstPick.classList.add("inactive");
+                    firstPick.removeAttribute("id");
+                    clickEvent.splice(0,2);
+                    livesLeft--;
+                    lives.innerHTML = `Lives Left: ${livesLeft}`;
+                }
+            }, 500)
+        }
+    })
+
 }
 */
