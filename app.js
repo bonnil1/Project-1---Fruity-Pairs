@@ -1,29 +1,72 @@
-//Start button + Timer
-
+//Start button 
 const startButton = document.getElementById("start-btn");
+
+//Timer + Timer Function
 let timer = document.getElementById("timer")
-
-//startButton.addEventListener("click", countDown()); //figure out how to make timer dependent on click event
-
-setInterval(countDown, 1000)
 
 let time = 30;
 
-function countDown() {
+function countDown() { //cite source
     let sec = time % 60;
     sec = pad(sec)
     timer.innerHTML = `00:${sec}`; 
     time--;
     time = time < 0 ? 0 : time;
+    if (time === 0) {
+        timer.innerHTML = "Time's Up! Try Again!";
+    }
 
     function pad(unit) {
         return(("0") + unit).length > 2 ? unit : "0" + unit;
     }
 }
 
-if (time === 0) {
-    timer.innerHTML = "Game Over! Would you like to try again?" //did not work...
-}
+
+//On click on start buttton, timer starts + can click cards to reveal fruits
+startButton.addEventListener("click", function() {
+    //Starts 30 second timer
+    let start = setInterval(countDown, 1000);
+
+    //Event Listeners for Card Click
+    let guessesLeft = 5;
+    let guesses = document.getElementById("lives-left");
+
+    const divAlpha = [a, b, c, d, e, f, g, h, letterI, j, k, l]
+    let clickEvent = [];
+
+    divAlpha.forEach((div) => {
+        div.addEventListener("click", () => {
+        let element = div.querySelector("img") //queryselector returns as value and not a node list
+        element.classList.remove("inactive")
+        let imgSRC = div.querySelector("img").src;
+
+        if (clickEvent.length === 0) {
+            clickEvent[0] = imgSRC;
+            element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
+        } else {
+            clickEvent[1] = imgSRC;
+            setTimeout(function() {
+                if (clickEvent[0] === clickEvent[1]) { //match condition
+                    let firstPick = document.getElementById("first-pick");
+                    firstPick.removeAttribute("id");
+                    clickEvent.splice(0,2);
+                } else { //not a match condition
+                    element.classList.add("inactive"); //add "inactive" tag to remove img from screen
+                    let firstPick = document.getElementById("first-pick");
+                    firstPick.classList.add("inactive");
+                    firstPick.removeAttribute("id")
+                    clickEvent.splice(0,2);
+                    guessesLeft--;
+                    guesses.innerHTML = `Lives Left: ${guessesLeft}`;
+                    if (guessesLeft === 0) {
+                        guesses.innerHTML = "You're out of guesses! Try again!";
+                    }
+                }
+            }, 500)
+        }
+        })
+    })
+});
 
 //Fruits Array
 const fruits = [
@@ -51,7 +94,7 @@ function generateRandomNum(length, max, min) {
     }
     return newArr;
 }
-console.log(generateRandomNum(12, 12, 0));
+generateRandomNum(12, 12, 0);
 
 //Create the game board -- how to make more efficient?
 //for loop that goes through the array + figure out how to iterate through divs...
@@ -109,51 +152,6 @@ let inactive = document.querySelectorAll("img")
 
 for (i = 0; i < fruits.length; i++) {
     inactive[i].classList.add("inactive")
-}
-
-//console.log(a.childNodes) //returns as nodelist, does not allow use of img values
-
-//Event Listeners for Click
-let livesLeft = 5;
-let lives = document.getElementById("lives-left");
-
-const divAlpha = [a, b, c, d, e, f, g, h, letterI, j, k, l]
-let clickEvent = [];
-
-divAlpha.forEach((div) => {
-    div.addEventListener("click", () => {
-    let element = div.querySelector("img") //queryselector returns as value and not a node list
-    element.classList.remove("inactive")
-    let imgSRC = div.querySelector("img").src;
-
-    if (clickEvent.length === 0) {
-        clickEvent[0] = imgSRC;
-        element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
-    } else {
-        clickEvent[1] = imgSRC;
-        setTimeout(function() {
-            if (clickEvent[0] === clickEvent[1]) { //match condition
-                console.log("match") // img remain on screen
-                let firstPick = document.getElementById("first-pick");
-                firstPick.removeAttribute("id");
-                clickEvent.splice(0,2);
-            } else { //not a match condition
-                element.classList.add("inactive"); //add "inactive" tag to remove img from screen
-                let firstPick = document.getElementById("first-pick");
-                firstPick.classList.add("inactive");
-                firstPick.removeAttribute("id")
-                clickEvent.splice(0,2);
-                livesLeft--;
-                lives.innerHTML = `Lives Left: ${livesLeft}`;
-                console.log(livesLeft)
-            }
-        }, 500)
-    }
-    })
-})
-
-if (livesLeft === 0) {
-    console.log("You lose the game, play again?")
 }
 
 //Version 1 (more redundant code) below

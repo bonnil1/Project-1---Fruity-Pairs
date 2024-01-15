@@ -7,10 +7,11 @@ body {
 }
 
 button {
-    width: 100px;
-    height: 40px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size:medium;
+    width: 150px;
+    height: 60px;
+    font-family: 'Bree Serif', serif;
+    font-family: 'Delius Unicase', cursive;
+    font-size: medium;
     font-weight: bold;
     border-radius: 2em;
     background-color: #F08080;
@@ -28,7 +29,7 @@ img {
 
 .another-container {
     display: grid;
-    grid-template-columns: 200px 200px;
+    grid-template-columns: 300px 250px;
     justify-content: center;
     margin: 10px;
     background-color: #ccbe29;
@@ -53,6 +54,7 @@ img {
 
 .cover {
     background-color: #F08080;
+    border: 1px solid darkcyan;
 }
 
 .inactive {

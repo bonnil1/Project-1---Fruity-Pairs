@@ -12,7 +12,7 @@ CSS
 JavaScript
 
 <Getting Started>
-    <link of game>
+    https://bonnil1.github.io/Project-1---Fruity-Pairs/
     <directions to start the game>
 
 <Next Steps>
