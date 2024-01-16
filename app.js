@@ -1,3 +1,5 @@
+let gameover = false;
+
 //Start button 
 const startButton = document.getElementById("start-btn");
 
@@ -14,59 +16,13 @@ function countDown() { //cite source
     time = time < 0 ? 0 : time;
     if (time === 0) {
         timer.innerHTML = "Time's Up! Try Again!";
+        gameover = true;
     }
 
     function pad(unit) {
         return(("0") + unit).length > 2 ? unit : "0" + unit;
     }
 }
-
-
-//On click on start buttton, timer starts + can click cards to reveal fruits
-startButton.addEventListener("click", function() {
-    //Starts 30 second timer
-    let start = setInterval(countDown, 1000);
-
-    //Event Listeners for Card Click
-    let guessesLeft = 5;
-    let guesses = document.getElementById("lives-left");
-
-    const divAlpha = [a, b, c, d, e, f, g, h, letterI, j, k, l]
-    let clickEvent = [];
-
-    divAlpha.forEach((div) => {
-        div.addEventListener("click", () => {
-        let element = div.querySelector("img") //queryselector returns as value and not a node list
-        element.classList.remove("inactive")
-        let imgSRC = div.querySelector("img").src;
-
-        if (clickEvent.length === 0) {
-            clickEvent[0] = imgSRC;
-            element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
-        } else {
-            clickEvent[1] = imgSRC;
-            setTimeout(function() {
-                if (clickEvent[0] === clickEvent[1]) { //match condition
-                    let firstPick = document.getElementById("first-pick");
-                    firstPick.removeAttribute("id");
-                    clickEvent.splice(0,2);
-                } else { //not a match condition
-                    element.classList.add("inactive"); //add "inactive" tag to remove img from screen
-                    let firstPick = document.getElementById("first-pick");
-                    firstPick.classList.add("inactive");
-                    firstPick.removeAttribute("id")
-                    clickEvent.splice(0,2);
-                    guessesLeft--;
-                    guesses.innerHTML = `Lives Left: ${guessesLeft}`;
-                    if (guessesLeft === 0) {
-                        guesses.innerHTML = "You're out of guesses! Try again!";
-                    }
-                }
-            }, 500)
-        }
-        })
-    })
-});
 
 //Fruits Array
 const fruits = [
@@ -87,7 +43,7 @@ const fruits = [
 //Generate random numbers to create new fruit placements on board.
 const newArr = [];
 
-function generateRandomNum(length, max, min) {
+function generateRandomNum(length, max, min) { //cite source
     for (let i = 0; i < length; i++) {
         const newNum = Math.floor(Math.random() * (max - min)) + min;
         newArr.includes(newNum) ? length += 1 : newArr.push(newNum);
@@ -148,11 +104,74 @@ let imageL = `<img src="${fruits[newArr[11]].image}">`
 l.innerHTML = imageL;
 
 //Puts the 'covers' on the fruits using the inactive class
-let inactive = document.querySelectorAll("img")
+function covers() {
+    let inactive = document.querySelectorAll("img")
 
-for (i = 0; i < fruits.length; i++) {
-    inactive[i].classList.add("inactive")
+    for (i = 0; i < fruits.length; i++) {
+        inactive[i].classList.add("inactive")
+    }
 }
+covers();
+
+//Win Scenario
+let matches = 0;
+let win = document.getElementById("win-tag");
+
+//On click on start buttton, timer starts + can click cards to reveal fruits
+startButton.addEventListener("click", function() {
+    //Starts 30 second timer
+    let start = setInterval(countDown, 1000);
+
+    //Event Listeners for Card Click
+    let guessesLeft = 5;
+    let guesses = document.getElementById("lives-left");
+    guesses.innerHTML = `Guesses Left: 5`
+
+    const divAlpha = [a, b, c, d, e, f, g, h, letterI, j, k, l]
+    let clickEvent = [];
+
+    divAlpha.forEach((div) => {
+        div.addEventListener("click", () => {
+        let element = div.querySelector("img") //queryselector returns as value and not a node list
+        element.classList.remove("inactive")
+        let imgSRC = div.querySelector("img").src;
+
+        if (clickEvent.length === 0) {
+            clickEvent[0] = imgSRC;
+            element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
+        } else {
+            clickEvent[1] = imgSRC;
+            setTimeout(function() {
+                if (clickEvent[0] === clickEvent[1]) { //match condition
+                    matches++;
+                    let firstPick = document.getElementById("first-pick");
+                    firstPick.removeAttribute("id");
+                    clickEvent.splice(0,2);
+                    if (matches === 6) {
+                        win.innerHTML = "YAY, you win!"
+                        clearInterval(start);
+                        gameover = true;
+                    } 
+                } else { //not a match condition
+                    element.classList.add("inactive"); //add "inactive" tag to remove img from screen
+                    let firstPick = document.getElementById("first-pick");
+                    firstPick.classList.add("inactive");
+                    firstPick.removeAttribute("id")
+                    clickEvent.splice(0,2);
+                    guessesLeft--;
+                    guesses.innerHTML = `Guesses Left: ${guessesLeft}`;
+                    if (guessesLeft === 0) {
+                        guesses.innerHTML = "You're out of guesses! Try again!";
+                        clearInterval(start);
+                        covers();
+                        gameover = true;
+                    }
+                }
+            }, 500)
+        }
+        })
+    })
+});
 
 //Version 1 (more redundant code) below
 /*

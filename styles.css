@@ -60,19 +60,19 @@ img {
 .inactive {
     visibility: hidden;
 }
-/*
-@media (max-width: 1100px) {
+
+@media (max-width: 500px) {
     img {
-        width: 120px;
+        width: 100px;
         height: 130px;
+    }
+    .another-container {
+        display: grid;
+        grid-template-columns: 100px 200px;
     }
     .grid-container {
         display: grid;
-        grid-template-columns: repeat(4, 2fr);
-        grid-template-rows: repeat(3, 2fr);
+        grid-template-columns: repeat(4, 1fr);
         grid-gap: 1px;
-        justify-content: space-evenly;
     }
 }
-*/
-/*want to limit the grid box to a max width*/
