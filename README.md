@@ -5,6 +5,9 @@ Match the pairs of fruits to win! A memory game where the player selects a card 
 
 <Screenshots of Game>
 
+![Model](https://github.com/bonnil1/Project-1---Fruity-Pairs/blob/main/game_start.png)
+
+![Model](https://github.com/bonnil1/Project-1---Fruity-Pairs/blob/main/game_win.png)
 
 <Technologies Used>
 HTML
@@ -12,7 +15,8 @@ CSS
 JavaScript
 
 <Getting Started>
-    https://bonnil1.github.io/Project-1---Fruity-Pairs/
-    <directions to start the game>
+https://bonnil1.github.io/Project-1---Fruity-Pairs/
+
+To play the game, click the 'Start' button and begin! Click on a card to reveal a fruit. Try to find its matching pair by clicking another card. Match all 6 pairs of fruits to win the game! Watch the timer and your remaining guesses.
 
 <Next Steps>

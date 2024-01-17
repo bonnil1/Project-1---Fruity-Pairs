@@ -41,6 +41,8 @@ const fruits = [
 ]
 
 //Generate random numbers to create new fruit placements on board.
+
+
 const newArr = [];
 
 function generateRandomNum(length, max, min) { //cite source
@@ -49,8 +51,7 @@ function generateRandomNum(length, max, min) { //cite source
         newArr.includes(newNum) ? length += 1 : newArr.push(newNum);
     }
     return newArr;
-}
-generateRandomNum(12, 12, 0);
+}generateRandomNum(12, 12, 0);
 
 //Create the game board -- how to make more efficient?
 //for loop that goes through the array + figure out how to iterate through divs...
