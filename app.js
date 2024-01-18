@@ -1,12 +1,10 @@
-let gameover = false;
-
 //Start button 
 const startButton = document.getElementById("start-btn");
 
-//Timer + Timer Function
+//Timer Variables + Timer Function
 let timer = document.getElementById("timer")
-
 let time = 30;
+let start = 0;
 
 function countDown() { //cite source
     let sec = time % 60;
@@ -16,7 +14,6 @@ function countDown() { //cite source
     time = time < 0 ? 0 : time;
     if (time === 0) {
         timer.innerHTML = "Time's Up! Try Again!";
-        gameover = true;
     }
 
     function pad(unit) {
@@ -40,8 +37,7 @@ const fruits = [
     {name: "watermelon" , image: "Watermelon.png"}, 
 ]
 
-//Generate random numbers to create new fruit placements on board.
-
+//Generate random numbers to create new fruit placements on board
 
 const newArr = [];
 
@@ -51,58 +47,101 @@ function generateRandomNum(length, max, min) { //cite source
         newArr.includes(newNum) ? length += 1 : newArr.push(newNum);
     }
     return newArr;
-}generateRandomNum(12, 12, 0);
+}
+generateRandomNum(12, 12, 0);
 
 //Create the game board -- how to make more efficient?
 //for loop that goes through the array + figure out how to iterate through divs...
+//Initialize div A-L variables
 //A
-let a = document.getElementById("A");
-let imageA = `<img src="${fruits[newArr[0]].image}">`
-a.innerHTML = imageA;
+let a = 0;
+let imageA = 0;
 //B
-let b = document.getElementById("B");
-let imageB = `<img src="${fruits[newArr[1]].image}">`
-b.innerHTML = imageB;
+let b = 0;
+let imageB = 0;
 //C
-let c = document.getElementById("C");
-let imageC = `<img src="${fruits[newArr[2]].image}">`
-c.innerHTML = imageC;
+let c = 0;
+let imageC = 0;
 //D
-let d = document.getElementById("D");
-let imageD = `<img src="${fruits[newArr[3]].image}">`
-d.innerHTML = imageD;
+let d = 0;
+let imageD = 0;
 //E
-let e = document.getElementById("E");
-let imageE = `<img src="${fruits[newArr[4]].image}">`
-e.innerHTML = imageE;
+let e = 0;
+let imageE = 0;
 //F
-let f = document.getElementById("F");
-let imageF = `<img src="${fruits[newArr[5]].image}">`
-f.innerHTML = imageF;
+let f = 0;
+let imageF = 0;
 //G
-let g = document.getElementById("G");
-let imageG = `<img src="${fruits[newArr[6]].image}">`
-g.innerHTML = imageG;
+let g = 0;
+let imageG = 0;
 //H
-let h = document.getElementById("H");
-let imageH = `<img src="${fruits[newArr[7]].image}">`
-h.innerHTML = imageH;
+let h = 0;
+let imageH = 0;
 //I
-let letterI = document.getElementById("I"); // i. is not allowed?
-let imageI = `<img src="${fruits[newArr[8]].image}">`
-letterI.innerHTML = imageI;
+let letterI = 0; // i. is not allowed?
+let imageI = 0;
 //J
-let j = document.getElementById("J");
-let imageJ = `<img src="${fruits[newArr[9]].image}">`
-j.innerHTML = imageJ;
+let j = 0;
+let imageJ = 0;
 //K
-let k = document.getElementById("K");
-let imageK = `<img src="${fruits[newArr[10]].image}">`
-k.innerHTML = imageK;
+let k = 0;
+let imageK = 0;
 //L
-let l = document.getElementById("L");
-let imageL = `<img src="${fruits[newArr[11]].image}">`
-l.innerHTML = imageL;
+let l = 0;
+let imageL = 0;
+
+//Function to assign fruits to a div
+function arrangeFruits() {
+    //A
+    a = document.getElementById("A");
+    imageA = `<img src="${fruits[newArr[0]].image}">`
+    a.innerHTML = imageA;
+    //B
+    b = document.getElementById("B");
+    imageB = `<img src="${fruits[newArr[1]].image}">`
+    b.innerHTML = imageB;
+    //C
+    c = document.getElementById("C");
+    imageC = `<img src="${fruits[newArr[2]].image}">`
+    c.innerHTML = imageC;
+    //D
+    d = document.getElementById("D");
+    imageD = `<img src="${fruits[newArr[3]].image}">`
+    d.innerHTML = imageD;
+    //E
+    e = document.getElementById("E");
+    imageE = `<img src="${fruits[newArr[4]].image}">`
+    e.innerHTML = imageE;
+    //F
+    f = document.getElementById("F");
+    imageF = `<img src="${fruits[newArr[5]].image}">`
+    f.innerHTML = imageF;
+    //G
+    g = document.getElementById("G");
+    imageG = `<img src="${fruits[newArr[6]].image}">`
+    g.innerHTML = imageG;
+    //H
+    h = document.getElementById("H");
+    imageH = `<img src="${fruits[newArr[7]].image}">`
+    h.innerHTML = imageH;
+    //I
+    letterI = document.getElementById("I"); // i. is not allowed?
+    imageI = `<img src="${fruits[newArr[8]].image}">`
+    letterI.innerHTML = imageI;
+    //J
+    j = document.getElementById("J");
+    imageJ = `<img src="${fruits[newArr[9]].image}">`
+    j.innerHTML = imageJ;
+    //K
+    k = document.getElementById("K");
+    imageK = `<img src="${fruits[newArr[10]].image}">`
+    k.innerHTML = imageK;
+    //L
+    l = document.getElementById("L");
+    imageL = `<img src="${fruits[newArr[11]].image}">`
+    l.innerHTML = imageL;
+}
+arrangeFruits();
 
 //Puts the 'covers' on the fruits using the inactive class
 function covers() {
@@ -114,48 +153,58 @@ function covers() {
 }
 covers();
 
-//Win Scenario
-let matches = 0;
+//Initialize variables in start button event listener
 let win = document.getElementById("win-tag");
+let guessesLeft = 0;
+let guesses = 0;
+let matches = 0;
+let element = 0;
+let imgSRC = 0;
+let firstPick = 0;
+
+const divAlpha = [a, b, c, d, e, f, g, h, letterI, j, k, l]
+let clickEvent = [];
 
 //On click on start buttton, timer starts + can click cards to reveal fruits
 startButton.addEventListener("click", function() {
-    //Starts 30 second timer
-    let start = setInterval(countDown, 1000);
+    //Starts 30 second time
+    time = 30;
+    start = setInterval(countDown, 1000);
 
     //Event Listeners for Card Click
-    let guessesLeft = 5;
-    let guesses = document.getElementById("lives-left");
-    guesses.innerHTML = `Guesses Left: 5`
+    guessesLeft = 5;
+    guesses = document.getElementById("lives-left");
+    guesses.innerHTML = `Guesses Left: ${guessesLeft}`;
 
-    const divAlpha = [a, b, c, d, e, f, g, h, letterI, j, k, l]
-    let clickEvent = [];
+    //Matches Counter
+    matches = 0;
 
     divAlpha.forEach((div) => {
         div.addEventListener("click", () => {
-        let element = div.querySelector("img") //queryselector returns as value and not a node list
+        element = div.querySelector("img") //queryselector returns as value and not a node list
         element.classList.remove("inactive")
-        let imgSRC = div.querySelector("img").src;
+        imgSRC = div.querySelector("img").src;
 
         if (clickEvent.length === 0) {
             clickEvent[0] = imgSRC;
+            console.log(clickEvent[0]);
             element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
         } else {
             clickEvent[1] = imgSRC;
+            console.log(clickEvent[1]);
             setTimeout(function() {
                 if (clickEvent[0] === clickEvent[1]) { //match condition
                     matches++;
-                    let firstPick = document.getElementById("first-pick");
+                    firstPick = document.getElementById("first-pick");
                     firstPick.removeAttribute("id");
                     clickEvent.splice(0,2);
                     if (matches === 6) {
                         win.innerHTML = "YAY, you win!"
                         clearInterval(start);
-                        gameover = true;
                     } 
                 } else { //not a match condition
                     element.classList.add("inactive"); //add "inactive" tag to remove img from screen
-                    let firstPick = document.getElementById("first-pick");
+                    firstPick = document.getElementById("first-pick");
                     firstPick.classList.add("inactive");
                     firstPick.removeAttribute("id")
                     clickEvent.splice(0,2);
@@ -164,8 +213,6 @@ startButton.addEventListener("click", function() {
                     if (guessesLeft === 0) {
                         guesses.innerHTML = "You're out of guesses! Try again!";
                         clearInterval(start);
-                        covers();
-                        gameover = true;
                     }
                 }
             }, 500)
@@ -173,6 +220,17 @@ startButton.addEventListener("click", function() {
         })
     })
 });
+
+//Play Again event listener
+const playAgain = document.getElementById("play-again");
+
+playAgain.addEventListener("click", function() {
+    guessesLeft = 5;
+    newArr.splice(0,12);
+    generateRandomNum(12, 12, 0);
+    arrangeFruits();
+    covers();
+})
 
 //Version 1 (more redundant code) below
 /*
