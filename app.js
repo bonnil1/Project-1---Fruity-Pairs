@@ -1,9 +1,10 @@
-//Start button 
+//Start Button + Play Again Button
 const startButton = document.getElementById("start-btn");
+const playAgain = document.getElementById("play-again");
 
-//Timer Variables + Timer Function
+//Initialize Timer Variables + Timer Function
 let timer = document.getElementById("timer")
-let time = 30;
+let time = 0;
 let start = 0;
 
 function countDown() { //cite source
@@ -37,8 +38,7 @@ const fruits = [
     {name: "watermelon" , image: "Watermelon.png"}, 
 ]
 
-//Generate random numbers to create new fruit placements on board
-
+//Function to generate random numbers to randomize game board
 const newArr = [];
 
 function generateRandomNum(length, max, min) { //cite source
@@ -51,7 +51,7 @@ function generateRandomNum(length, max, min) { //cite source
 generateRandomNum(12, 12, 0);
 
 //Create the game board -- how to make more efficient?
-//for loop that goes through the array + figure out how to iterate through divs...
+
 //Initialize div A-L variables
 //A
 let a = 0;
@@ -143,7 +143,7 @@ function arrangeFruits() {
 }
 arrangeFruits();
 
-//Puts the 'covers' on the fruits using the inactive class
+//Function to put 'covers' on the fruits using the inactive class
 function covers() {
     let inactive = document.querySelectorAll("img")
 
@@ -153,7 +153,7 @@ function covers() {
 }
 covers();
 
-//Initialize variables in start button event listener
+//Initialize variables in matchUnmatch function
 let win = document.getElementById("win-tag");
 let guessesLeft = 0;
 let guesses = 0;
@@ -165,18 +165,15 @@ let firstPick = 0;
 const divAlpha = [a, b, c, d, e, f, g, h, letterI, j, k, l]
 let clickEvent = [];
 
-//On click on start buttton, timer starts + can click cards to reveal fruits
-startButton.addEventListener("click", function() {
-    //Starts 30 second time
+function matchUnmatch() {
+
     time = 30;
     start = setInterval(countDown, 1000);
 
-    //Event Listeners for Card Click
     guessesLeft = 5;
     guesses = document.getElementById("lives-left");
     guesses.innerHTML = `Guesses Left: ${guessesLeft}`;
 
-    //Matches Counter
     matches = 0;
 
     divAlpha.forEach((div) => {
@@ -187,11 +184,9 @@ startButton.addEventListener("click", function() {
 
         if (clickEvent.length === 0) {
             clickEvent[0] = imgSRC;
-            console.log(clickEvent[0]);
             element.setAttribute("id", "first-pick"); //add ID tag so I can call the first card again
         } else {
             clickEvent[1] = imgSRC;
-            console.log(clickEvent[1]);
             setTimeout(function() {
                 if (clickEvent[0] === clickEvent[1]) { //match condition
                     matches++;
@@ -219,17 +214,27 @@ startButton.addEventListener("click", function() {
         }
         })
     })
-});
+}
+
+//Start Button event listener
+startButton.addEventListener("click", matchUnmatch);
 
 //Play Again event listener
-const playAgain = document.getElementById("play-again");
-
 playAgain.addEventListener("click", function() {
+    startButton.removeEventListener("click", matchUnmatch);
+    
+    time = 30;
+    start = setInterval(countDown, 1000);
+    timer.innerHTML = "00:30";
     guessesLeft = 5;
+    guesses.innerHTML = "Guesses Left: 5";
+    matches = 0;
+
     newArr.splice(0,12);
     generateRandomNum(12, 12, 0);
     arrangeFruits();
     covers();
+    win.innerHTML = "";
 })
 
 //Version 1 (more redundant code) below
