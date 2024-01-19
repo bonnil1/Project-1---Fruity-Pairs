@@ -155,6 +155,7 @@ covers();
 
 //Initialize variables in matchUnmatch function
 let win = document.getElementById("win-tag");
+
 let guessesLeft = 0;
 let guesses = 0;
 let matches = 0;
