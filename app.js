@@ -22,6 +22,7 @@ function countDown() {
 
         if (time === 0) {
             timer.innerHTML = "Time's Up! Try Again!";
+            clearInterval(start);
         }
     }, 1000)
 }
@@ -181,7 +182,7 @@ function matchUnmatch() {
     matches = 0;
 
     divAlpha.forEach((div) => {
-        div.addEventListener("click", () => {
+        div.addEventListener("click", function hello() {
         element = div.querySelector("img") //queryselector returns as value and not a node list
         element.classList.remove("inactive")
         imgSRC = div.querySelector("img").src;
@@ -212,7 +213,6 @@ function matchUnmatch() {
                     if (guessesLeft === 0) {
                         guesses.innerHTML = "You're out of guesses! Try again!";
                         clearInterval(start);
-                        //div.removeEventListener("click", ); **come back to this
                     }
                 }
             }, 500)
@@ -228,6 +228,7 @@ startButton.addEventListener("click", matchUnmatch);
 playAgain.addEventListener("click", function() {
     startButton.removeEventListener("click", matchUnmatch);
     
+    clearInterval(start);
     time = 30;
     timer.innerHTML = "00:30";
     startButton.addEventListener("click", countDown);
@@ -242,6 +243,8 @@ playAgain.addEventListener("click", function() {
     generateRandomNum(12, 12, 0);
     arrangeFruits();
     covers();
+
+    clickEvent.splice(0,2);
 })
 
 //Version 1 (more redundant code) below

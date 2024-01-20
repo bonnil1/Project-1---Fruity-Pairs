@@ -11,6 +11,7 @@ Match all the pairs of fruits to win! A memory game where the player selects a c
 ![Model](https://github.com/bonnil1/Project-1---Fruity-Pairs/blob/main/game_win.png)
 
 <Technologies Used>
+
 Technologies Used:
 
 HTML
@@ -35,7 +36,7 @@ Enjoy!
 
 Next Steps:
 
-~ Add sounds to the game when a correct and incorrect match is made.
+~ Add sounds to the game when a correct or incorrect match is made.
 
 ~ Add rounds of increasing difficulty to challenge the player.
 
