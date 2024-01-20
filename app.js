@@ -6,20 +6,24 @@ const playAgain = document.getElementById("play-again");
 let timer = document.getElementById("timer")
 let time = 0;
 let start = 0;
+let sec;
 
-function countDown() { //cite source
-    let sec = time % 60;
-    sec = pad(sec)
-    timer.innerHTML = `00:${sec}`; 
-    time--;
-    time = time < 0 ? 0 : time;
-    if (time === 0) {
-        timer.innerHTML = "Time's Up! Try Again!";
-    }
+function countDown() { 
+    start = setInterval(function() {
+        sec = time % 60;
+        sec = pad(sec)
+        timer.innerHTML = `00:${sec}`; 
+        time--;
+        time = time < 0 ? 0 : time;
 
-    function pad(unit) {
-        return(("0") + unit).length > 2 ? unit : "0" + unit;
-    }
+        function pad(unit) {
+            return(("0") + unit).length > 2 ? unit : "0" + unit;
+        }
+
+        if (time === 0) {
+            timer.innerHTML = "Time's Up! Try Again!";
+        }
+    }, 1000)
 }
 
 //Fruits Array
@@ -41,7 +45,7 @@ const fruits = [
 //Function to generate random numbers to randomize game board
 const newArr = [];
 
-function generateRandomNum(length, max, min) { //cite source
+function generateRandomNum(length, max, min) {
     for (let i = 0; i < length; i++) {
         const newNum = Math.floor(Math.random() * (max - min)) + min;
         newArr.includes(newNum) ? length += 1 : newArr.push(newNum);
@@ -49,8 +53,6 @@ function generateRandomNum(length, max, min) { //cite source
     return newArr;
 }
 generateRandomNum(12, 12, 0);
-
-//Create the game board -- how to make more efficient?
 
 //Initialize div A-L variables
 //A
@@ -125,7 +127,7 @@ function arrangeFruits() {
     imageH = `<img src="${fruits[newArr[7]].image}">`
     h.innerHTML = imageH;
     //I
-    letterI = document.getElementById("I"); // i. is not allowed?
+    letterI = document.getElementById("I");
     imageI = `<img src="${fruits[newArr[8]].image}">`
     letterI.innerHTML = imageI;
     //J
@@ -144,8 +146,10 @@ function arrangeFruits() {
 arrangeFruits();
 
 //Function to put 'covers' on the fruits using the inactive class
+let inactive;
+
 function covers() {
-    let inactive = document.querySelectorAll("img")
+    inactive = document.querySelectorAll("img")
 
     for (i = 0; i < fruits.length; i++) {
         inactive[i].classList.add("inactive")
@@ -169,11 +173,10 @@ let clickEvent = [];
 function matchUnmatch() {
 
     time = 30;
-    start = setInterval(countDown, 1000);
+    countDown();
 
     guessesLeft = 5;
     guesses = document.getElementById("lives-left");
-    guesses.innerHTML = `Guesses Left: ${guessesLeft}`;
 
     matches = 0;
 
@@ -209,6 +212,7 @@ function matchUnmatch() {
                     if (guessesLeft === 0) {
                         guesses.innerHTML = "You're out of guesses! Try again!";
                         clearInterval(start);
+                        //div.removeEventListener("click", ); **come back to this
                     }
                 }
             }, 500)
@@ -225,17 +229,19 @@ playAgain.addEventListener("click", function() {
     startButton.removeEventListener("click", matchUnmatch);
     
     time = 30;
-    start = setInterval(countDown, 1000);
     timer.innerHTML = "00:30";
+    startButton.addEventListener("click", countDown);
+    
     guessesLeft = 5;
     guesses.innerHTML = "Guesses Left: 5";
+    
     matches = 0;
+    win.innerHTML = "";
 
     newArr.splice(0,12);
     generateRandomNum(12, 12, 0);
     arrangeFruits();
     covers();
-    win.innerHTML = "";
 })
 
 //Version 1 (more redundant code) below
